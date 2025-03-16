@@ -3,7 +3,7 @@ import { arktypeValidator } from "@hono/arktype-validator";
 import { type } from "arktype";
 import { Hono } from "hono";
 import { HTTPException } from "hono/http-exception";
-import { authMiddleware } from "./auth-middleware";
+import { authMiddleware } from "./middlewares/auth";
 
 export const HASHES_ROUTER = new Hono<HonoEnv>().basePath("/hashes");
 
