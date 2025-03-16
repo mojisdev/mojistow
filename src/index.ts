@@ -3,6 +3,7 @@ import { Hono } from "hono";
 import { cache } from "hono/cache";
 import { HTTPException } from "hono/http-exception";
 import { HASHES_ROUTER } from "./hashes";
+import { STOW_ROUTER } from "./stow";
 
 const app = new Hono<HonoEnv>();
 
@@ -15,6 +16,7 @@ app.get(
 );
 
 app.route("/", HASHES_ROUTER);
+app.route("/", STOW_ROUTER);
 
 app.onError(async (err, c) => {
   console.error(err);
