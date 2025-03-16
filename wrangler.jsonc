@@ -21,6 +21,11 @@
       "id": "10ef8f73f0ca4e14a954b94cbb6a0136"
     }
   ],
+  // only here for generation not to fail in ci
+  // since we are running cf-typegen
+  "vars": {
+    "MOJIS_TOKEN": ""
+  },
   "placement": { "mode": "smart" },
   "env": {
     "preview": {
