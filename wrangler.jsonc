@@ -27,8 +27,7 @@
       "name": "mojistow-preview",
       "preview_urls": false,
       "vars": {
-        "ENVIRONMENT": "preview",
-        "MOJIS_TOKEN": "mojis-token"
+        "ENVIRONMENT": "preview"
       },
       "route": {
         "custom_domain": true,
@@ -51,8 +50,7 @@
       "name": "mojistow",
       "preview_urls": false,
       "vars": {
-        "ENVIRONMENT": "production",
-        "MOJIS_TOKEN": "mojis-token"
+        "ENVIRONMENT": "production"
       },
       "route": {
         "custom_domain": true,
