@@ -11,8 +11,6 @@ function getKVPrefix(env: string): string {
   return env === "production" ? "prod" : env === "preview" ? "preview" : "dev";
 }
 
-const VERSION_SCHEMA = type("string");
-
 HASHES_ROUTER.get("/", async (c) => {
   const result = await c.env.MOJIS_HASHES.list({
     prefix: getKVPrefix(c.env.ENVIRONMENT),
@@ -32,8 +30,8 @@ HASHES_ROUTER.get("/", async (c) => {
   return c.json(hashes);
 });
 
-HASHES_ROUTER.get("/:version", arktypeValidator("param", VERSION_SCHEMA), async (c) => {
-  const version = c.req.valid("param");
+HASHES_ROUTER.get("/:version", async (c) => {
+  const version = c.req.param("version");
 
   const hash = await c.env.MOJIS_HASHES.get(`${getKVPrefix(c.env.ENVIRONMENT)}:${version}`);
 
@@ -51,10 +49,9 @@ HASHES_ROUTER.get("/:version", arktypeValidator("param", VERSION_SCHEMA), async 
 HASHES_ROUTER.post(
   "/:version",
   authMiddleware,
-  arktypeValidator("param", VERSION_SCHEMA),
   arktypeValidator("json", type("string")),
   async (c) => {
-    const version = c.req.valid("param");
+    const version = c.req.param("version");
     const hash = c.req.valid("json");
 
     await c.env.MOJIS_HASHES.put(`${getKVPrefix(c.env.ENVIRONMENT)}:${version}`, hash);
