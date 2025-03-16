@@ -1,7 +1,8 @@
+import type { HonoEnv } from "./types";
 import { createMiddleware } from "hono/factory";
 import { HTTPException } from "hono/http-exception";
 
-export const authMiddleware = createMiddleware(async (c, next) => {
+export const authMiddleware = createMiddleware<HonoEnv>(async (c, next) => {
   const token = c.req.header("Authorization");
   if (token == null) {
     throw new HTTPException(401, {

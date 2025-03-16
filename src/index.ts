@@ -1,9 +1,18 @@
 import type { ApiError, HonoEnv } from "./types";
 import { Hono } from "hono";
+import { cache } from "hono/cache";
 import { HTTPException } from "hono/http-exception";
 import { HASHES_ROUTER } from "./hashes";
 
 const app = new Hono<HonoEnv>();
+
+app.get(
+  "*",
+  cache({
+    cacheName: "mojistow",
+    cacheControl: "max-age=3600",
+  }),
+);
 
 app.route("/", HASHES_ROUTER);
 
