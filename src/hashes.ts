@@ -49,10 +49,12 @@ HASHES_ROUTER.get("/:version", async (c) => {
 HASHES_ROUTER.post(
   "/:version",
   authMiddleware,
-  arktypeValidator("json", type("string")),
+  arktypeValidator("json", type({
+    hash: type("string"),
+  })),
   async (c) => {
     const version = c.req.param("version");
-    const hash = c.req.valid("json");
+    const { hash } = c.req.valid("json");
 
     await c.env.MOJIS_HASHES.put(`${getKVPrefix(c.env.ENVIRONMENT)}:${version}`, hash);
 
