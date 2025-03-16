@@ -1,0 +1,55 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "mojistow",
+  "main": "src/index.ts",
+  "compatibility_date": "2025-03-13",
+  "observability": {
+    "logs": {
+      "enabled": true
+    },
+    "enabled": true
+  },
+  "r2_buckets": [
+    {
+      "binding": "EMOJI_DATA",
+      "bucket_name": "mojis"
+    }
+  ],
+  "placement": { "mode": "smart" },
+  "env": {
+    "preview": {
+      "name": "mojistow-preview",
+      "preview_urls": false,
+      "vars": {
+        "ENVIRONMENT": "preview"
+      },
+      "route": {
+        "custom_domain": true,
+        "pattern": "mojistow.preview.mojis.dev"
+      },
+      "r2_buckets": [
+        {
+          "binding": "EMOJI_DATA",
+          "bucket_name": "mojis-preview"
+        }
+      ]
+    },
+    "production": {
+      "name": "mojistow",
+      "preview_urls": false,
+      "vars": {
+        "ENVIRONMENT": "production"
+      },
+      "route": {
+        "custom_domain": true,
+        "pattern": "mojistow.mojis.dev"
+      },
+      "r2_buckets": [
+        {
+          "binding": "EMOJI_DATA",
+          "bucket_name": "mojis"
+        }
+      ]
+    }
+  }
+}
