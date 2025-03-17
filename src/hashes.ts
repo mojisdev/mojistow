@@ -24,7 +24,7 @@ HASHES_ROUTER.get("/", async (c) => {
 
     if (hash == null) return null;
 
-    const [version, item] = key.split(":");
+    const [_env, version, item] = key.split(":");
     return {
       version,
       hash,
