@@ -46,17 +46,39 @@ HASHES_ROUTER.get("/:version", async (c) => {
   });
 });
 
+HASHES_ROUTER.get("/:version/:item", async (c) => {
+  const version = c.req.param("version");
+  const item = c.req.param("item");
+
+  const hash = await c.env.MOJIS_HASHES.get(`${getKVPrefix(c.env.ENVIRONMENT)}:${version}:${item}`);
+
+  if (hash == null) {
+    throw new HTTPException(404, {
+      message: "Hash not found",
+    });
+  }
+
+  return c.json({
+    hash,
+  });
+});
+
 HASHES_ROUTER.post(
-  "/:version",
+  "/",
   authMiddleware,
   arktypeValidator("json", type({
-    hash: type("string"),
+    version: "string",
+    item: "string?",
+    hash: "string",
   })),
   async (c) => {
-    const version = c.req.param("version");
-    const { hash } = c.req.valid("json");
+    const { version, item, hash } = c.req.valid("json");
 
-    await c.env.MOJIS_HASHES.put(`${getKVPrefix(c.env.ENVIRONMENT)}:${version}`, hash);
+    if (item != null) {
+      await c.env.MOJIS_HASHES.put(`${getKVPrefix(c.env.ENVIRONMENT)}:${version}:${item}`, hash);
+    } else {
+      await c.env.MOJIS_HASHES.put(`${getKVPrefix(c.env.ENVIRONMENT)}:${version}`, hash);
+    }
 
     return c.json({
       hash,
