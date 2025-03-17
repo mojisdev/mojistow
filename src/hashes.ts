@@ -21,13 +21,18 @@ HASHES_ROUTER.get("/", async (c) => {
   // fetch all hashes
   const hashes = await Promise.all(keys.map(async (key) => {
     const hash = await c.env.MOJIS_HASHES.get(key);
+
+    if (hash == null) return null;
+
+    const [version, item] = key.split(":");
     return {
-      version: key.split(":")[1],
+      version,
       hash,
+      item,
     };
   }));
 
-  return c.json(hashes);
+  return c.json(hashes.filter((h) => h != null));
 });
 
 HASHES_ROUTER.get("/:version", async (c) => {
