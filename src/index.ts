@@ -48,4 +48,10 @@ app.notFound(async (c) => {
   } satisfies ApiError, 404);
 });
 
-export default app;
+export default {
+  fetch: app.fetch,
+  scheduled: async (_ctrl, _env, _ctx) => {
+    // eslint-disable-next-line no-console
+    console.log("Scheduled task");
+  },
+} satisfies ExportedHandler<HonoEnv>;

@@ -26,6 +26,11 @@
   "vars": {
     "MOJIS_TOKEN": ""
   },
+  "triggers": {
+    "crons": [
+      "0 */12 * * *"
+    ]
+  },
   "placement": { "mode": "smart" },
   "env": {
     "preview": {
