@@ -40,7 +40,9 @@ STOW_ROUTER.post(
       // eslint-disable-next-line no-console
         console.info(entry.type, entry.name);
 
-        c.env.EMOJI_DATA.put(`${version}:${item}`, entry.text);
+        const res = await c.env.EMOJI_DATA.put(`${version}:${item}.json`, entry.text);
+        // eslint-disable-next-line no-console
+        console.info({ key: res?.key, version: res?.version, uploaded: res?.uploaded, size: res?.size });
       }
     }
 
