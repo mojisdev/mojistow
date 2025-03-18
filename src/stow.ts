@@ -38,6 +38,7 @@ STOW_ROUTER.post(
     });
 
     for (const entry of tar) {
+      if (entry.type !== "file") continue;
       const normalizedEntryName = entry.name.replace("./", "");
       const res = await c.env.EMOJI_DATA.put(`${version}/${normalizedEntryName}`, entry.text);
       // eslint-disable-next-line no-console
