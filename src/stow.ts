@@ -40,9 +40,11 @@ STOW_ROUTER.post(
     for (const entry of tar) {
       if (entry.type !== "file") continue;
       const normalizedEntryName = entry.name.replace("./", "");
-      const res = await c.env.EMOJI_DATA.put(`${version}/${normalizedEntryName}`, entry.text);
       // eslint-disable-next-line no-console
-      console.info({ key: res?.key, version: res?.version, uploaded: res?.uploaded, size: res?.size });
+      console.log(
+        `Uploading ${entry.name} (${entry.size} bytes) to ${version}/${normalizedEntryName}`,
+      );
+      await c.env.EMOJI_DATA.put(`${version}/${normalizedEntryName}`, entry.text);
     }
 
     return c.json({
