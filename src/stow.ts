@@ -37,6 +37,8 @@ STOW_ROUTER.post(
       },
     });
 
+    const promises = [];
+
     for (const entry of tar) {
       if (entry.type !== "file") continue;
       const normalizedEntryName = entry.name.replace("./", "");
@@ -44,11 +46,15 @@ STOW_ROUTER.post(
       console.log(
         `Uploading ${entry.name} (${entry.size} bytes) to ${version}/${normalizedEntryName}`,
       );
-      await c.env.EMOJI_DATA.put(`${version}/${normalizedEntryName}`, entry.text);
+      promises.push(c.env.EMOJI_DATA.put(`${version}/${normalizedEntryName}`, entry.text));
     }
 
+    c.executionCtx.waitUntil(
+      Promise.all(promises),
+    );
+
     return c.json({
-      message: "Uploaded",
+      message: "Files uploaded",
     });
   },
 );
