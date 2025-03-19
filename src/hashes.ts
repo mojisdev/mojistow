@@ -10,6 +10,19 @@ function getKVPrefix(env: string): string {
   return env === "production" ? "prod" : env === "preview" ? "preview" : "dev";
 }
 
+HASHES_ROUTER.get("/delete", authMiddleware, async (c) => {
+  const result = await c.env.MOJIS_HASHES.list({
+    prefix: `${getKVPrefix(c.env.ENVIRONMENT)}`,
+  });
+
+  const keys = result.keys.map((h) => h.name);
+  await Promise.all(keys.map((key) => c.env.MOJIS_HASHES.delete(key)));
+
+  return c.json({
+    done: true,
+  });
+});
+
 HASHES_ROUTER.get("/:version", async (c) => {
   const result = await c.env.MOJIS_HASHES.list({
     prefix: `${getKVPrefix(c.env.ENVIRONMENT)}:${c.req.param("version")}`,
