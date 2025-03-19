@@ -17,6 +17,9 @@ importers:
       hono:
         specifier: ^4.7.4
         version: 4.7.4
+      nanotar:
+        specifier: ^0.2.0
+        version: 0.2.0
     devDependencies:
       '@cloudflare/vitest-pool-workers':
         specifier: ^0.8.0
@@ -1766,6 +1769,9 @@ packages:
     resolution: {integrity: sha512-SppoicMGpZvbF1l3z4x7No3OlIjP7QJvC9XR7AhZr1kL133KHnKPztkKDc+Ir4aJ/1VhTySrtKhrsycmrMQfvg==}
     engines: {node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1}
     hasBin: true
+
+  nanotar@0.2.0:
+    resolution: {integrity: sha512-9ca1h0Xjvo9bEkE4UOxgAzLV0jHKe6LMaxo37ND2DAhhAtd0j8pR1Wxz+/goMrZO8AEZTWCmyaOsFI/W5AdpCQ==}
 
   natural-compare@1.4.0:
     resolution: {integrity: sha512-OWND8ei3VtNC9h7V60qff3SVobHr996CTwgxubgyQYEpg290h9J0buyECNNJexkFm5sOajh5G116RYA1c8ZMSw==}
@@ -4094,6 +4100,8 @@ snapshots:
   mustache@4.2.0: {}
 
   nanoid@3.3.9: {}
+
+  nanotar@0.2.0: {}
 
   natural-compare@1.4.0: {}
 

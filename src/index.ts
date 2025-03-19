@@ -3,6 +3,7 @@ import { Hono } from "hono";
 import { cache } from "hono/cache";
 import { HTTPException } from "hono/http-exception";
 import { HASHES_ROUTER } from "./hashes";
+import { STOW_ROUTER } from "./stow";
 
 const app = new Hono<HonoEnv>();
 
@@ -15,6 +16,7 @@ app.get(
 );
 
 app.route("/", HASHES_ROUTER);
+app.route("/", STOW_ROUTER);
 
 app.onError(async (err, c) => {
   console.error(err);
@@ -46,4 +48,10 @@ app.notFound(async (c) => {
   } satisfies ApiError, 404);
 });
 
-export default app;
+export default {
+  fetch: app.fetch,
+  scheduled: async (_ctrl, _env, _ctx) => {
+    // eslint-disable-next-line no-console
+    console.log("Scheduled task");
+  },
+} satisfies ExportedHandler<HonoEnv>;

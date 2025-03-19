@@ -16,7 +16,8 @@
   "dependencies": {
     "@hono/arktype-validator": "^2.0.0",
     "arktype": "^2.1.9",
-    "hono": "^4.7.4"
+    "hono": "^4.7.4",
+    "nanotar": "^0.2.0"
   },
   "devDependencies": {
     "@cloudflare/vitest-pool-workers": "^0.8.0",

@@ -2,7 +2,6 @@ import type { HonoEnv } from "./types";
 import { arktypeValidator } from "@hono/arktype-validator";
 import { type } from "arktype";
 import { Hono } from "hono";
-import { HTTPException } from "hono/http-exception";
 import { authMiddleware } from "./middlewares/auth";
 
 export const HASHES_ROUTER = new Hono<HonoEnv>().basePath("/hashes");
@@ -11,9 +10,22 @@ function getKVPrefix(env: string): string {
   return env === "production" ? "prod" : env === "preview" ? "preview" : "dev";
 }
 
-HASHES_ROUTER.get("/", async (c) => {
+HASHES_ROUTER.get("/delete", authMiddleware, async (c) => {
   const result = await c.env.MOJIS_HASHES.list({
-    prefix: getKVPrefix(c.env.ENVIRONMENT),
+    prefix: `${getKVPrefix(c.env.ENVIRONMENT)}`,
+  });
+
+  const keys = result.keys.map((h) => h.name);
+  await Promise.all(keys.map((key) => c.env.MOJIS_HASHES.delete(key)));
+
+  return c.json({
+    done: true,
+  });
+});
+
+HASHES_ROUTER.get("/:version", async (c) => {
+  const result = await c.env.MOJIS_HASHES.list({
+    prefix: `${getKVPrefix(c.env.ENVIRONMENT)}:${c.req.param("version")}`,
   });
 
   const keys = result.keys.map((h) => h.name);
@@ -33,39 +45,6 @@ HASHES_ROUTER.get("/", async (c) => {
   }));
 
   return c.json(hashes.filter((h) => h != null));
-});
-
-HASHES_ROUTER.get("/:version", async (c) => {
-  const version = c.req.param("version");
-
-  const hash = await c.env.MOJIS_HASHES.get(`${getKVPrefix(c.env.ENVIRONMENT)}:${version}`);
-
-  if (hash == null) {
-    throw new HTTPException(404, {
-      message: "Hash not found",
-    });
-  }
-
-  return c.json({
-    hash,
-  });
-});
-
-HASHES_ROUTER.get("/:version/:item", async (c) => {
-  const version = c.req.param("version");
-  const item = c.req.param("item");
-
-  const hash = await c.env.MOJIS_HASHES.get(`${getKVPrefix(c.env.ENVIRONMENT)}:${version}:${item}`);
-
-  if (hash == null) {
-    throw new HTTPException(404, {
-      message: "Hash not found",
-    });
-  }
-
-  return c.json({
-    hash,
-  });
 });
 
 HASHES_ROUTER.post(
