@@ -2,7 +2,7 @@
   "name": "mojistow",
   "type": "module",
   "private": true,
-  "packageManager": "pnpm@10.6.3",
+  "packageManager": "pnpm@10.6.5",
   "scripts": {
     "dev": "wrangler dev",
     "build": "wrangler deploy --dry-run --outdir=dist",
@@ -15,18 +15,18 @@
   },
   "dependencies": {
     "@hono/arktype-validator": "^2.0.0",
-    "arktype": "^2.1.9",
-    "hono": "^4.7.4",
+    "arktype": "^2.1.10",
+    "hono": "^4.7.5",
     "nanotar": "^0.2.0"
   },
   "devDependencies": {
-    "@cloudflare/vitest-pool-workers": "^0.8.0",
-    "@luxass/eslint-config": "^4.16.0",
+    "@cloudflare/vitest-pool-workers": "^0.8.3",
+    "@luxass/eslint-config": "^4.17.1",
     "eslint": "^9.22.0",
     "eslint-plugin-format": "^1.0.1",
     "typescript": "^5.8.2",
-    "vitest": "^3.0.8",
-    "wrangler": "^4.0.0"
+    "vitest": "^3.0.9",
+    "wrangler": "^4.3.0"
   },
   "pnpm": {
     "onlyBuiltDependencies": [
