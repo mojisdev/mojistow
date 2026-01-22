@@ -26,7 +26,7 @@
     "eslint-plugin-format": "^1.0.1",
     "typescript": "5.9.2",
     "vitest": "3.2.1",
-    "wrangler": "4.32.0"
+    "wrangler": "4.59.1"
   },
   "pnpm": {
     "onlyBuiltDependencies": [
