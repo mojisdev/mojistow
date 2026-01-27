@@ -16,7 +16,7 @@
   "dependencies": {
     "@hono/arktype-validator": "2.0.1",
     "arktype": "2.1.20",
-    "hono": "4.10.3",
+    "hono": "4.11.7",
     "nanotar": "0.2.0"
   },
   "devDependencies": {
