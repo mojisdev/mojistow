@@ -10,13 +10,13 @@ importers:
     dependencies:
       '@hono/arktype-validator':
         specifier: 2.0.1
-        version: 2.0.1(arktype@2.1.20)(hono@4.11.7)
+        version: 2.0.1(arktype@2.1.20)(hono@4.11.10)
       arktype:
         specifier: 2.1.20
         version: 2.1.20
       hono:
-        specifier: 4.11.7
-        version: 4.11.7
+        specifier: 4.11.10
+        version: 4.11.10
       nanotar:
         specifier: 0.2.1
         version: 0.2.1
@@ -1897,8 +1897,8 @@ packages:
     resolution: {integrity: sha512-EykJT/Q1KjTWctppgIAgfSO0tKVuZUjhgMr17kqTumMl6Afv3EISleU7qZUzoXDFTAHTDC4NOoG/ZxU3EvlMPQ==}
     engines: {node: '>=8'}
 
-  hono@4.11.7:
-    resolution: {integrity: sha512-l7qMiNee7t82bH3SeyUCt9UF15EVmaBvsppY2zQtrbIhl/yzBTny+YUxsVjSjQ6gaqaeVtZmGocom8TzBlA4Yw==}
+  hono@4.11.10:
+    resolution: {integrity: sha512-kyWP5PAiMooEvGrA9jcD3IXF7ATu8+o7B3KCbPXid5se52NPqnOpM/r9qeW2heMnOekF4kqR1fXJqCYeCLKrZg==}
     engines: {node: '>=16.9.0'}
 
   ignore@5.3.2:
@@ -3129,10 +3129,10 @@ snapshots:
       '@eslint/core': 0.15.2
       levn: 0.4.1
 
-  '@hono/arktype-validator@2.0.1(arktype@2.1.20)(hono@4.11.7)':
+  '@hono/arktype-validator@2.0.1(arktype@2.1.20)(hono@4.11.10)':
     dependencies:
       arktype: 2.1.20
-      hono: 4.11.7
+      hono: 4.11.10
 
   '@humanfs/core@0.19.1': {}
 
@@ -4311,7 +4311,7 @@ snapshots:
 
   has-flag@4.0.0: {}
 
-  hono@4.11.7: {}
+  hono@4.11.10: {}
 
   ignore@5.3.2: {}
 
