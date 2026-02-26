@@ -21,7 +21,7 @@
   },
   "devDependencies": {
     "@cloudflare/vitest-pool-workers": "0.8.66",
-    "@luxass/eslint-config": "4.19.0",
+    "@luxass/eslint-config": "7.2.0",
     "eslint": "^9.22.0",
     "eslint-plugin-format": "^1.0.1",
     "typescript": "5.9.2",
