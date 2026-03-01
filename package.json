@@ -22,7 +22,7 @@
   "devDependencies": {
     "@cloudflare/vitest-pool-workers": "0.8.66",
     "@luxass/eslint-config": "4.19.0",
-    "eslint": "^9.22.0",
+    "eslint": "^10.0.0",
     "eslint-plugin-format": "^1.0.1",
     "typescript": "5.9.2",
     "vitest": "3.2.1",
